@@ -1,0 +1,22 @@
+{
+    "name": "socodo/router",
+    "description": "Router component for socodo.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Socodo\\Router\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Qroffle Inc.",
+            "email": "socodo@qroffle.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^8.1",
+        "socodo/http": "dev-main"
+    }
+}
