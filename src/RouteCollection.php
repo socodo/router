@@ -4,8 +4,10 @@ namespace Socodo\Router;
 
 use Psr\Http\Message\RequestInterface;
 use Socodo\Http\Enums\HttpMethods;
+use Socodo\Router\Interfaces\RouteCollectionInterface;
+use Socodo\Router\Interfaces\RouteInterface;
 
-class RouteCollection
+class RouteCollection implements RouteCollectionInterface
 {
     /** @var int Index. */
     protected int $index = 0;
@@ -19,22 +21,12 @@ class RouteCollection
     /**
      * Add a route.
      *
-     * @param RouteAbstract $route
+     * @param RouteInterface $route
      * @param ?int $priority
      * @return void
      */
-    public function add (RouteAbstract $route, ?int $priority = null): void
+    public function add (RouteInterface $route, ?int $priority = null): void
     {
-        if ($route instanceof RoutePrefix)
-        {
-            foreach ($route->getChildren() as $child)
-            {
-                $child->setPath($route->getPath() . '/' . $child->getPath());
-                $this->add($child, $priority);
-            }
-            return;
-        }
-
         $index = $this->index++;
         $this->routes[$index] = $route;
 
@@ -81,7 +73,12 @@ class RouteCollection
      *
      * @param string $method
      * @param string $path
-     * @return array|null
+     * @return ?array{
+     *              route: Route,
+     *              method: ?HttpMethods,
+     *              controller: mixed,
+     *              params: array<string, string>
+     *          }
      */
     protected function matchPath (string $method, string $path): ?array
     {
@@ -143,7 +140,7 @@ class RouteCollection
             {
                 return [
                     'route' => $route,
-                    'method' => $method,
+                    'method' => HttpMethods::tryFrom($method),
                     'controller' => $route->getController(),
                     'params' => $parameters
                 ];

@@ -12,10 +12,9 @@ class Patch extends Route
      * Constructor.
      *
      * @param string $path
-     * @param string $host
      */
-    public function __construct (string $path, string $host = '')
+    public function __construct (string $path)
     {
-        parent::__construct(HttpMethods::PATCH, $path, $host);
+        parent::__construct(HttpMethods::PATCH, $path);
     }
 }

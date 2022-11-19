@@ -3,30 +3,28 @@
 namespace Socodo\Router\Attributes;
 
 use Attribute;
-use Socodo\Router\RoutePrefix;
 
-#[Attribute(Attribute::IS_REPEATABLE|Attribute::TARGET_CLASS)]
+#[Attribute(Attribute::TARGET_CLASS)]
 class Prefix
 {
-    protected RoutePrefix $prefix;
+    protected string $prefix;
 
     /**
      * Constructor.
      *
-     * @param string $path
-     * @param string $host
+     * @param string $prefix
      */
-    public function __construct (string $path = '/', string $host = '')
+    public function __construct (string $prefix = '')
     {
-        $this->prefix = new RoutePrefix($path, $host);
+        $this->prefix = trim($prefix, '/');
     }
 
     /**
-     * Get RoutePrefix instance.
+     * Get prefix.
      *
-     * @return RoutePrefix
+     * @return string
      */
-    public function getRoutePrefix (): RoutePrefix
+    public function getPrefix (): string
     {
         return $this->prefix;
     }

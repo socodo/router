@@ -15,11 +15,10 @@ class Route
      *
      * @param HttpMethods|array<HttpMethods> $methods
      * @param string $path
-     * @param string $host
      */
-    public function __construct (HttpMethods|array $methods, string $path, string $host = '')
+    public function __construct (HttpMethods|array $methods, string $path)
     {
-        $this->route = new \Socodo\Router\Route($methods, $path, $host);
+        $this->route = new \Socodo\Router\Route($methods, trim($path, '/'));
     }
 
     /**

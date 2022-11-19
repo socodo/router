@@ -12,10 +12,9 @@ class Post extends Route
      * Constructor.
      *
      * @param string $path
-     * @param string $host
      */
-    public function __construct (string $path, string $host = '')
+    public function __construct (string $path)
     {
-        parent::__construct(HttpMethods::POST, $path, $host);
+        parent::__construct(HttpMethods::POST, $path);
     }
 }

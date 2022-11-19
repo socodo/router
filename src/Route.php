@@ -5,12 +5,16 @@ namespace Socodo\Router;
 use Socodo\Http\Enums\HttpMethods;
 use Socodo\Router\Exceptions\InvalidParameterNameException;
 use Socodo\Router\Exceptions\InvalidParameterValidationException;
+use Socodo\Router\Interfaces\RouteInterface;
 use TypeError;
 
-class Route extends RouteAbstract
+class Route implements RouteInterface
 {
     /** @var array<HttpMethods> Route methods. */
     protected array $methods = [];
+
+    /** @var string Route path. */
+    protected string $path = '';
 
     /** @var array|null Compiled data. */
     protected ?array $compiledData = null;
@@ -103,6 +107,26 @@ class Route extends RouteAbstract
         }
 
         $this->methods = array_diff($this->methods, [ $method ]);
+    }
+
+    /**
+     * Get path.
+     *
+     * @return string
+     */
+    public function getPath (): string
+    {
+        return $this->path;
+    }
+
+    /**
+     * Set path.
+     * @param string $path
+     * @return void
+     */
+    public function setPath (string $path): void
+    {
+        $this->path = trim($path, '/');
     }
 
     /**
