@@ -66,6 +66,7 @@ class AttributeLoader implements LoaderInterface
                     /** @var Route $attr */
                     $attr = $routeAttr->newInstance();
                     $route = $attr->getRoute();
+                    $route->setController([ $className, $method->getName() ]);
                     $route->setPath($prefixPath . '/' . $route->getPath());
 
                     $collection->add($route);
