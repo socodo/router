@@ -16,6 +16,6 @@
     ],
     "require": {
         "php": "^8.1",
-        "socodo/http": "^0.0.1"
+        "socodo/http": "^0.0.2"
     }
 }

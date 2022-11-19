@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5658aa3ad5c4eaa6cd62854ba1ce9ccd",
+    "content-hash": "559fdbe057b31800d5f9e2b802cdb308",
     "packages": [
         {
             "name": "psr/http-client",
@@ -113,7 +113,7 @@
         },
         {
             "name": "socodo/http",
-            "version": "0.0.1",
+            "version": "0.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/socodo/http.git",
@@ -150,7 +150,7 @@
             "description": "HTTP component for socodo.",
             "support": {
                 "issues": "https://github.com/socodo/http/issues",
-                "source": "https://github.com/socodo/http/tree/0.0.1"
+                "source": "https://github.com/socodo/http/tree/0.0.2"
             },
             "time": "2022-11-19T05:19:15+00:00"
         }
