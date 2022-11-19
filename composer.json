@@ -14,9 +14,8 @@
             "email": "socodo@qroffle.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": "^8.1",
-        "socodo/http": "dev-main"
+        "socodo/http": "^0.0.1"
     }
 }
