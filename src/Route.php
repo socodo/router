@@ -127,6 +127,7 @@ class Route implements RouteInterface
     public function setPath (string $path): void
     {
         $this->path = trim($path, '/');
+        $this->compiledData = null;
     }
 
     /**
