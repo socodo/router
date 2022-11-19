@@ -90,7 +90,7 @@ class Route implements RouteInterface
     public function addMethod (HttpMethods $method): void
     {
         $this->methods[] = $method;
-        $this->methods = array_unique($this->methods);
+        $this->methods = array_unique($this->methods, SORT_REGULAR);
     }
 
     /**
@@ -106,7 +106,7 @@ class Route implements RouteInterface
             return;
         }
 
-        $this->methods = array_diff($this->methods, [ $method ]);
+        $this->methods = array_udiff($this->methods, [ $method ], static fn ($a, $b) => $a == $b ? 0 : -1);
     }
 
     /**
@@ -168,6 +168,11 @@ class Route implements RouteInterface
             $params = [];
 
             $pathSegments = explode('/', $this->getPath());
+            if ($pathSegments == [''])
+            {
+                return $this->compiledData = [ 'segments' => [], 'params' => [] ];
+            }
+
             foreach ($pathSegments as $segment)
             {
                 if (!str_starts_with($segment, '{'))
